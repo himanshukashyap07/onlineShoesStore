@@ -1,0 +1,165 @@
+{
+  "placeholderImages": [
+    {
+      "id": "1",
+      "name": "NebulaKnit Runner",
+      "style": "sneaker",
+      "price": 129.99,
+      "color": "Cosmic Black",
+      "brand": "Adidas",
+      "category": [
+        "men"
+      ],
+      "sizes": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "imageUrl": "https://images.unsplash.com/photo-1580902394883-98f8d5af85fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxibGFjayUyMHNuZWFrZXJ8ZW58MHx8fHwxNzY5NTc4ODM1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "black sneaker"
+    },
+    {
+      "id": "2",
+      "name": "TerraFlex Trail",
+      "style": "boot",
+      "price": 189.99,
+      "color": "Forest Green",
+      "brand": "Puma",
+      "category": [
+        "men"
+      ],
+      "sizes": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "imageUrl": "https://images.unsplash.com/photo-1711666576484-ca5a969643c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxncmVlbiUyMGJvb3R8ZW58MHx8fHwxNzY5NTg3NTU1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "green boot"
+    },
+    {
+      "id": "3",
+      "name": "AuraWeave Loafer",
+      "style": "formal",
+      "price": 220,
+      "salePrice": 199.99,
+      "color": "Rich Mahogany",
+      "brand": "Reebok",
+      "category": [
+        "men"
+      ],
+      "sizes": [
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "imageUrl": "https://images.unsplash.com/photo-1556901500-99dabada00dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxicm93biUyMHNob2V8ZW58MHx8fHwxNzY5NTg3NTU1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "brown shoe"
+    },
+    {
+      "id": "4",
+      "name": "SolarSlide 360",
+      "style": "sandal",
+      "price": 79.5,
+      "color": "Sunburst Orange",
+      "brand": "Nike",
+      "category": [
+        "women"
+      ],
+      "sizes": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "imageUrl": "https://images.unsplash.com/photo-1657196086676-213365fcc913?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxvcmFuZ2UlMjBzYW5kYWx8ZW58MHx8fHwxNzY5NTg3NTU1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "orange sandal"
+    },
+    {
+      "id": "5",
+      "name": "Velocity Pro",
+      "style": "sneaker",
+      "price": 145,
+      "color": "Electric Blue",
+      "brand": "Puma",
+      "category": [
+        "women"
+      ],
+      "sizes": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "imageUrl": "https://images.unsplash.com/photo-1580893154371-ce50d0dfc537?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxibHVlJTIwc25lYWtlcnxlbnwwfHx8fDE3Njk1Nzg4MzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue sneaker"
+    },
+    {
+      "id": "6",
+      "name": "Metropolis Chukka",
+      "style": "boot",
+      "price": 199.99,
+      "salePrice": 179.99,
+      "color": "Graphite Gray",
+      "brand": "Reebok",
+      "category": [
+        "women"
+      ],
+      "sizes": [
+        9,
+        10,
+        11
+      ],
+      "imageUrl": "https://images.unsplash.com/photo-1626808763451-ffd08dcf0c36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxncmF5JTIwYm9vdHxlbnwwfHx8fDE3Njk1ODc1NTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gray boot"
+    },
+    {
+      "id": "7",
+      "name": "Elegance Derby",
+      "style": "formal",
+      "price": 250,
+      "color": "Onyx Black",
+      "brand": "Nike",
+      "category": [
+        "men",
+        "women"
+      ],
+      "sizes": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "imageUrl": "https://images.unsplash.com/photo-1621388986397-9f0b091e965d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxibGFjayUyMGZvcm1hbHxlbnwwfHx8fDE3Njk1ODc1NTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "black formal"
+    },
+    {
+      "id": "8",
+      "name": "BreezeFlow Sandal",
+      "style": "sandal",
+      "price": 65,
+      "color": "Ocean Teal",
+      "brand": "Adidas",
+      "category": [
+        "men",
+        "women"
+      ],
+      "sizes": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "imageUrl": "https://images.unsplash.com/photo-1566499003412-4736d6099504?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWFsJTIwc2FuZGFsfGVufDB8fHx8MTc2OTU4NzU1NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "teal sandal"
+    }
+  ]
+}
