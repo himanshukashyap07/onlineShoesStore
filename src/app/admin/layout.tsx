@@ -46,32 +46,32 @@ export default function AdminLayout({
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsClient(true);
+  // }, []);
 
-  useEffect(() => {
-    if (isClient && (!isLoggedIn || user?.role !== 'admin')) {
-      router.replace('/login');
-    }
-  }, [isLoggedIn, user, router, isClient]);
+  // useEffect(() => {
+  //   if (isClient && (!isLoggedIn || user?.role !== 'admin')) {
+  //     router.replace('/login');
+  //   }
+  // }, [isLoggedIn, user, router, isClient]);
 
-  if (!isClient || !isLoggedIn || user?.role !== 'admin') {
-    return (
-        <div className="flex min-h-screen items-center justify-center bg-background">
-          <Card className="w-full max-w-md">
-            <CardHeader>
-              <CardTitle>Access Denied</CardTitle>
-              <CardDescription>You do not have permission to view this page. Redirecting to login...</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <p>If you are not redirected, please click the button below.</p>
-                <Button onClick={() => router.push('/login')} className="mt-4 w-full">Login</Button>
-            </CardContent>
-          </Card>
-        </div>
-    );
-  }
+  // if (!isClient || !isLoggedIn || user?.role !== 'admin') {
+  //   return (
+  //       <div className="flex min-h-screen items-center justify-center bg-background">
+  //         <Card className="w-full max-w-md">
+  //           <CardHeader>
+  //             <CardTitle>Access Denied</CardTitle>
+  //             <CardDescription>You do not have permission to view this page. Redirecting to login...</CardDescription>
+  //           </CardHeader>
+  //           <CardContent>
+  //               <p>If you are not redirected, please click the button below.</p>
+  //               <Button onClick={() => router.push('/login')} className="mt-4 w-full">Login</Button>
+  //           </CardContent>
+  //         </Card>
+  //       </div>
+  //   );
+  // }
 
   return (
     <SidebarProvider>

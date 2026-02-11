@@ -21,14 +21,23 @@ export default function LoginPage() {
 
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      await signIn("credentials",{email,password,redirect:false})
+    if (!email || !password) {
+      toast({
+        title: 'Login Failed',
+        description: 'Please enter both email and password.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    const res = await signIn("credentials", { email, password, redirect: false });
+    if (res && (res as any).ok) {
       toast({ title: 'Login Successful', description: 'Welcome back!' });
       router.replace('/');
     } else {
       toast({
         title: 'Login Failed',
-        description: 'Please check your credentials.',
+        description: (res as any)?.error || 'Please check your credentials.',
         variant: 'destructive',
       });
     }

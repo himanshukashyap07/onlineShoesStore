@@ -17,22 +17,29 @@ export default function SignupPage() {
   const [fullname, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [mobileNumber,setMobileNumber] = useState(0)
+  const [mobileNumber,setMobileNumber] = useState('')
   const router = useRouter();
   const { toast } = useToast();
   const handleSubmit =  async(e: React.FormEvent) => {
     e.preventDefault();
-    if (fullname && email && password) {
+    if (fullname && email && password && mobileNumber) {
+      // basic client-side mobile validation (10 digits)
+      if (!/^\d{10}$/.test(mobileNumber)) {
+        toast({ title: 'Invalid Mobile Number', description: 'Mobile number must be 10 digits.', variant: 'destructive' });
+        return;
+      }
       try {
-        const res = await axios.post("/api/register",{fullname,mobileNumber,email,password})
+        const payload = { fullname, mobileNumber: Number(mobileNumber), email, password };
+        const res = await axios.post("/api/register", payload)
         console.log(res);
         if (!res) {
-          toast({title:"error occure"})
+          toast({title:"error occurred"})
         }
         toast({ title: 'Account Created', description: 'Welcome to SoleSculpt!' });
         router.replace('/login');
       } catch (error) {
-        
+        console.log(error);
+        return;
       }
     } else {
       toast({
@@ -63,7 +70,7 @@ export default function SignupPage() {
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="mobileNumber">Mobile Number</Label>
-                <Input id="mobileNumber" placeholder="Your Mobile Number" type='number' required value={mobileNumber} onChange={e => setMobileNumber(Number(e.target.value))} />
+                <Input id="mobileNumber" placeholder="Your Mobile Number" type="tel" required value={mobileNumber} onChange={e => setMobileNumber(e.target.value)} />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>

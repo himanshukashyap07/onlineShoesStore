@@ -12,12 +12,12 @@ export async function POST(req:NextRequest){
     const {mobileNumber,email,fullname,password} = await req.json();
     
     //validate data from request
-    if(!mobileNumber || !email || !fullname || !password){
+    if(!mobileNumber || !email || !fullname || !password){        
         return handleApiError(400,"All fields are required");
     }
     const validatedCredentials = signupSchema.safeParse({mobileNumber,email,fullname,password});
     
-    if(!validatedCredentials.success){
+    if(!validatedCredentials.success){        
         return handleApiError(402, "Invalid credentials", validatedCredentials);
     }
     
@@ -25,10 +25,13 @@ export async function POST(req:NextRequest){
 
     const exrestingUserWithMobileNumber = await User.findOne({mobileNumber:validatedCredentials.data.mobileNumber})
     if (exrestingUserWithMobileNumber && exrestingUserWithMobileNumber.isEmailVarified) {
+        console.log("maybe error here");
         return handleApiError(400,"User with this mobile number already exists");
     }
     const exrestingUserWithEmail = await User.findOne({email:validatedCredentials.data.email})
     if (exrestingUserWithEmail && exrestingUserWithEmail.isEmailVarified) {
+        console.log("error here");
+        
         return handleApiError(400,"User with this email already exists");
     }
     const isAdminEmail = validatedCredentials.data.email === process.env.ADMIN_EMAIL;

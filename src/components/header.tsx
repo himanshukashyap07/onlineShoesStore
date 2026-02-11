@@ -18,6 +18,9 @@ import {
 import { Separator } from "./ui/separator";
 import { useAuthStore } from "@/lib/auth-store";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { IUser } from "@/models/User";
+import { signOut, useSession } from "next-auth/react";
 
 const navLinks = [
   { href: "/new-arrivals", label: "New Arrivals" },
@@ -26,12 +29,17 @@ const navLinks = [
   { href: "/sale", label: "Sale" },
 ];
 
-export function Header() {
-  const { isLoggedIn, user, logout } = useAuthStore();
-  const router = useRouter();
 
-  const handleLogout = () => {
-    logout();
+
+export function Header() {
+  // Use NextAuth session directly instead of local store to avoid stale/empty values
+  const router = useRouter();
+  const { data: session, status } = useSession();
+    console.log(session?.user);
+
+
+  const handleLogout = async () => {
+    await signOut({ redirect: false });
     router.push('/');
   };
 
@@ -40,6 +48,7 @@ export function Header() {
       <div className="container flex h-16 max-w-7xl items-center justify-between">
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2" prefetch={false}>
+          <button onClick={()=>signOut()}>logout</button>
             <Logo className="h-6 w-6 text-primary" />
             <span className="font-headline text-2xl text-primary">SoleSculpt</span>
           </Link>
@@ -59,7 +68,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <SearchDialog />
           <Cart />
-          
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="hidden md:inline-flex">
@@ -68,11 +77,11 @@ export function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              {isLoggedIn && user ? (
+              {status === 'authenticated' && session?.user ? (
                 <>
-                  <DropdownMenuLabel>Hi, {user.name}</DropdownMenuLabel>
+                  <DropdownMenuLabel>Hi, {session.user.fullName ?? session.user.name}</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                   {user.role === 'admin' && (
+                  {session.user.role === 'admin' && (
                     <DropdownMenuItem asChild>
                       <Link href="/admin"><Shield className="mr-2 h-4 w-4" />Admin Dashboard</Link>
                     </DropdownMenuItem>
@@ -84,7 +93,7 @@ export function Header() {
                 </>
               ) : (
                 <>
-                  <DropdownMenuLabel>Welcome, Guest</DropdownMenuLabel>
+                  <DropdownMenuLabel>Welcome, {session?.user.fullName}</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
                     <Link href="/login">Login</Link>
@@ -96,7 +105,7 @@ export function Header() {
               )}
             </DropdownMenuContent>
           </DropdownMenu>
-          
+
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
@@ -105,44 +114,44 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left">
-               <div className="flex h-full flex-col">
-                  <nav className="grid gap-6 text-lg font-medium mt-8">
+              <div className="flex h-full flex-col">
+                <nav className="grid gap-6 text-lg font-medium mt-8">
+                  <Link
+                    href="/"
+                    className="flex items-center gap-2 text-lg font-semibold"
+                    prefetch={false}
+                  >
+                    <Logo className="h-6 w-6 text-primary" />
+                    <span className="font-headline text-2xl text-primary">SoleSculpt</span>
+                  </Link>
+                  {navLinks.map((link) => (
                     <Link
-                      href="/"
-                      className="flex items-center gap-2 text-lg font-semibold"
+                      key={link.label}
+                      href={link.href}
+                      className="text-muted-foreground transition-colors hover:text-foreground"
                       prefetch={false}
                     >
-                      <Logo className="h-6 w-6 text-primary" />
-                      <span className="font-headline text-2xl text-primary">SoleSculpt</span>
+                      {link.label}
                     </Link>
-                    {navLinks.map((link) => (
-                      <Link
-                        key={link.label}
-                        href={link.href}
-                        className="text-muted-foreground transition-colors hover:text-foreground"
-                        prefetch={false}
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </nav>
-                  <Separator className="my-6" />
-                  <div className="grid gap-6 text-lg font-medium">
-                      {isLoggedIn && user ? (
-                          <>
-                              {user.role === 'admin' && (
-                                <Link href="/admin" className="text-muted-foreground transition-colors hover:text-foreground">Admin</Link>
-                              )}
-                              <Link href="/profile" className="text-muted-foreground transition-colors hover:text-foreground">Profile</Link>
-                              <button onClick={handleLogout} className="text-left text-muted-foreground transition-colors hover:text-foreground">Logout</button>
-                          </>
-                      ) : (
-                          <>
-                              <Link href="/login" className="text-muted-foreground transition-colors hover:text-foreground">Login</Link>
-                              <Link href="/signup" className="text-muted-foreground transition-colors hover:text-foreground">Sign Up</Link>
-                          </>
+                  ))}
+                </nav>
+                <Separator className="my-6" />
+                <div className="grid gap-6 text-lg font-medium">
+                  {status === 'authenticated' && session?.user ? (
+                    <>
+                      {session.user.role === 'admin' && (
+                        <Link href="/admin" className="text-muted-foreground transition-colors hover:text-foreground">Admin</Link>
                       )}
-                  </div>
+                      <Link href="/profile" className="text-muted-foreground transition-colors hover:text-foreground">Profile</Link>
+                      <button onClick={handleLogout} className="text-left text-muted-foreground transition-colors hover:text-foreground">Logout</button>
+                    </>
+                  ) : (
+                    <>
+                      <Link href="/login" className="text-muted-foreground transition-colors hover:text-foreground">Login</Link>
+                      <Link href="/signup" className="text-muted-foreground transition-colors hover:text-foreground">Sign Up</Link>
+                    </>
+                  )}
+                </div>
               </div>
             </SheetContent>
           </Sheet>

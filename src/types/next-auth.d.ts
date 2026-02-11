@@ -17,15 +17,15 @@ declare module 'next-auth' {
             role?: string;
             email?: string;
             accountStatus?: string;
-        } & DefauiltSession['user']
+        } & DefaultSession['user']
     }
 }
 
 declare module "next-auth/jwt" {
     interface JWT {
         _id: string;
-        email:string;
-        accountStauts:string;
+        email: string;
+        accountStatus: string;
         fullName: string;
         mobileNumber: string;
         role: string;
